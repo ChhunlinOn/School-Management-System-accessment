@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import classRoute from "./routes/classRoute.js";
+import studentsRoute from './routes/studentsRoute.js'
+import authRoute from './routes/authRoute.js'
 import dotenv from "dotenv";
 
 // Initialize dotenv to load environment variables
@@ -28,6 +30,8 @@ app.get("/", (req, res) => {
 
 
 app.use("/api/class", classRoute);
+app.use("/api/sudents", studentsRoute);
+app.use("/api/auth", authRoute)
 
 //connectDB
 connectDB();
@@ -35,5 +39,5 @@ connectDB();
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  console.log(`Server is running on port: http://localhost:${PORT}.`);
 });
